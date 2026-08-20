@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delta Direct Install</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;background:#111;color:#fff;min-height:100vh;display:grid;place-items:center}.card{text-align:center;padding:40px 24px}.card h1{font-size:32px;margin:0 0 12px}.card p{color:#aaa;margin:0 0 28px}.main-install{border:0;border-radius:18px;padding:17px 48px;background:#0a84ff;color:white;font-size:21px;font-weight:600}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.58);display:none;align-items:center;justify-content:center;padding:16px}.overlay.show{display:flex}.dialog{width:min(100%,760px);border:1px solid rgba(255,255,255,.18);border-radius:38px;overflow:hidden;background:rgba(115,115,118,.96);box-shadow:0 18px 60px rgba(0,0,0,.5);color:#f4f4f4}.dialog-text{padding:38px 42px 34px;text-align:center;font-size:32px;line-height:1.28;letter-spacing:.1px}.actions{display:flex;gap:24px;padding:20px 46px 16px;border-top:1px solid rgba(255,255,255,.06)}.actions button{flex:1;border:0;border-radius:72px;padding:24px 10px;font-size:28px;font-weight:500;color:#f5f5f5;background:rgba(255,255,255,.18)}.actions .cancel{background:linear-gradient(180deg,#58c4e5,#36a7cf)}@media(max-width:600px){.dialog{border-radius:30px}.dialog-text{font-size:24px;padding:32px 24px}.actions{padding:16px 24px;gap:16px}.actions button{font-size:22px;padding:20px 8px}}
+</style>
+</head>
+<body>
+<main class="card"><h1>Delta</h1><p>Direct installation</p><button class="main-install" id="openInstall">Install</button></main>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="dialogText">
+  <div class="dialog">
+    <div class="dialog-text" id="dialogText">“raw.githubusercontent.com”<br>would like to install “Delta”</div>
+    <div class="actions"><button class="cancel" id="cancel">Cancel</button><button id="confirmInstall">Install</button></div>
+  </div>
+</div>
+<script>
+const overlay=document.getElementById('overlay');
+document.getElementById('openInstall').onclick=()=>overlay.classList.add('show');
+document.getElementById('cancel').onclick=()=>overlay.classList.remove('show');
+document.getElementById('confirmInstall').onclick=()=>{window.location.href='itms-services://?action=download-manifest&url=https://delta.bz/manifest.plist'};
+overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.classList.remove('show')});
+</script>
+</body>
+</html>
